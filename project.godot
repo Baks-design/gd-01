@@ -1,0 +1,56 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="gd01"
+run/main_scene="uid://2n558fawwnyt"
+config/features=PackedStringArray("4.7", "Forward Plus")
+config/icon="res://icon.svg"
+
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+
+[editor]
+
+naming/script_name_casing=2
+
+[input_devices]
+
+buffering/agile_event_flushing=true
+
+[navigation]
+
+2d/navigation_engine="GodotNavigation2D"
+3d/navigation_engine="GodotNavigation3D"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+textures/lossless_compression/force_png=true
+global_illumination/gi/use_half_resolution=true
+textures/default_filters/use_nearest_mipmap_filter=true
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+environment/ssao/quality=0
+environment/ssil/quality=0
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+environment/volumetric_fog/use_filter=0
+occlusion_culling/use_occlusion_culling=true

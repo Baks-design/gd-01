@@ -1,0 +1,19 @@
+{
+  "languages": {
+    "GDScript": {
+      "formatter": {
+        "external": {
+          "command": "gdscript-formatter",
+          "arguments": []
+        }
+      }
+    }
+  },
+  "lsp": {
+    "gdscript": {
+      "binary": {
+        "arguments": ["127.0.0.1", "6005"]
+      }
+    }
+  }
+}
