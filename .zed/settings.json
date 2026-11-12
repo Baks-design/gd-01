@@ -1,0 +1,27 @@
+{
+  "languages": {
+    "GDScript": {
+      "formatter": {
+        "external": {
+          "command": "gdscript-formatter",
+          "arguments": [],
+        },
+      },
+    },
+  },
+  "lsp": {
+    "gdscript": {
+      "binary": {
+        "arguments": ["127.0.0.1", "6005"],
+      },
+    },
+  },
+  "file_scan_exclusions": [
+    "**/*.uid",
+    "**/.git",
+    "**/.editorconfig",
+    "**/.gitattributes",
+    "**/.gitignore",
+     "**/*.godot",
+  ],
+}

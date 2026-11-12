@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c4okanokkeg7u"]
+
+[ext_resource type="Script" uid="uid://uwmle3yuu80o" path="res://scripts/core/tools/state_machine/state_machine.gd" id="1_dqkch"]
+[ext_resource type="Script" uid="uid://beudrum6dkeed" path="res://scripts/behaviours/player/player.gd" id="1_qlg0r"]
+[ext_resource type="Script" uid="uid://cmfbqoxja7v56" path="res://scripts/behaviours/camera/follow_camera.gd" id="1_tuyoq"]
+[ext_resource type="Script" uid="uid://bao2rdt48hrth" path="res://scripts/behaviours/player/states/idle_state.gd" id="2_qlg0r"]
+[ext_resource type="Script" uid="uid://bqvk1xqygb7sb" path="res://scripts/behaviours/player/states/walk_state.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://c6eqjrxqwxf46" path="res://scripts/behaviours/player/states/dash_state.gd" id="4_fjrip"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u177a"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdeca"]
+albedo_color = Color(0.26666668, 0.14901961, 0.07450981, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u177a"]
+material = SubResource("StandardMaterial3D_tdeca")
+size = Vector3(30, 1, 30)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tipki"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_85g3d"]
+
+[node name="Node3D" type="Node3D" unique_id=591068519]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1917114678]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1402367457]
+shape = SubResource("BoxShape3D_u177a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=478846735]
+mesh = SubResource("BoxMesh_u177a")
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=1610353744]
+
+[node name="Camera" type="Camera3D" parent="CameraRig" unique_id=45010774 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -1.2515225, 5.8208604, 5.4869375)
+script = ExtResource("1_tuyoq")
+target = NodePath("../../Player")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=973798857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("1_qlg0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1093561924]
+shape = SubResource("CapsuleShape3D_tipki")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=795654877]
+mesh = SubResource("CapsuleMesh_85g3d")
+
+[node name="StateMachine" type="Node" parent="Player" unique_id=984912622 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_dqkch")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="Player/StateMachine" unique_id=39031106]
+script = ExtResource("2_qlg0r")
+
+[node name="WalkState" type="Node" parent="Player/StateMachine" unique_id=2033467931]
+script = ExtResource("3_tuyoq")
+speed = 10.0
+
+[node name="DashState" type="Node" parent="Player/StateMachine" unique_id=1863890741]
+script = ExtResource("4_fjrip")
+dash_speed = 20.0
